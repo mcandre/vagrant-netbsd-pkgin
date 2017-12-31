@@ -2,7 +2,7 @@ BOX=vagrant-netbsd-pkgin.box
 
 .PHONY: launch-vm clean-vm clean-boxes clean-vagrant-metadata
 
-launch-vm:
+launch-vm: Vagrantfile bootstrap.sh
 	vagrant up
 
 test: launch-vm
@@ -19,5 +19,5 @@ clean-vagrant-metadata:
 
 clean: clean-boxes clean-vm clean-vagrant-metadata
 
-$(BOX): clean launch-vm
+$(BOX): export.Vagrantfile clean launch-vm
 	vagrant package --output $(BOX) --vagrantfile export.Vagrantfile
