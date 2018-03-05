@@ -5,9 +5,6 @@ BOX=vagrant-netbsd-pkgin.box
 launch-vm: Vagrantfile bootstrap.sh
 	vagrant up
 
-test: launch-vm
-	vagrant ssh -c "su root -c 'pkgin update && pkgin install wget' && wget --version"
-
 clean-vm:
 	-vagrant destroy -f
 
@@ -19,5 +16,8 @@ clean-vagrant-metadata:
 
 clean: clean-boxes clean-vm clean-vagrant-metadata
 
-$(BOX): export.Vagrantfile clean launch-vm
+$(BOX): clean-boxes clean-vm launch-vm export.Vagrantfile
 	vagrant package --output $(BOX) --vagrantfile export.Vagrantfile
+
+install-box-virtualbox: $(BOX)
+	vagrant box add --force --name mcandre/vagrant-netbsd-pkgin $(BOX)

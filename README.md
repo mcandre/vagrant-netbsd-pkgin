@@ -7,6 +7,7 @@ https://app.vagrantup.com/mcandre/boxes/vagrant-netbsd-pkgin
 # EXAMPLE
 
 ```console
+$ cd test
 $ vagrant up
 $ vagrant ssh -c "su root -c 'pkgin update && pkgin -y install wget' && wget --version"
 GNU Wget 1.19.1 built on netbsd.
