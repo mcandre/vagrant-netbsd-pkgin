@@ -2,12 +2,13 @@
 
 # VAGRANT CLOUD
 
-https://app.vagrantup.com/mcandre/boxes/vagrant-netbsd-pkgin
+* https://app.vagrantup.com/mcandre/boxes/vagrant-netbsd-pkgin-amd64
+* https://app.vagrantup.com/mcandre/boxes/vagrant-netbsd-pkgin-i386
 
 # EXAMPLE
 
 ```console
-$ cd test
+$ cd amd64/test
 $ vagrant up
 $ vagrant ssh -c "su root -c 'pkgin update && pkgin -y install wget' && wget --version"
 GNU Wget 1.19.1 built on netbsd.
@@ -58,5 +59,6 @@ Please send bug reports and questions to <bug-wget@gnu.org>.
 # EXPORT
 
 ```console
-$ make vagrant-netbsd-pkgin.box
+$ sh -c "cd amd64 && make vagrant-netbsd-pkgin-amd64.box"
+$ sh -c "cd i386 && make vagrant-netbsd-pkgin-i386.box"
 ```
